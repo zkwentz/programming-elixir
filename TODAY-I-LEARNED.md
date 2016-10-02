@@ -1,0 +1,1 @@
+1. Erlang and Elixir both pattern match, however, Erlang doesn't let you assign to a variable more than once, like you can in Elixir. Elixir allows this because it is the algrebraic representation of equality.
