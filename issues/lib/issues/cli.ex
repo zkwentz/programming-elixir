@@ -46,6 +46,7 @@ defmodule Issues.CLI do
     |> convert_to_list_of_maps
     |> sort_into_ascending_order
     |> Enum.take(count)
+    |> Issues.Formatter.format_issues
   end
 
   def decode_response({:ok, body}), do: body
@@ -65,4 +66,5 @@ defmodule Issues.CLI do
     Enum.sort list_of_issues,
          fn i1, i2 -> i1["created_at"] <= i2["created_at"] end
   end
+
 end
