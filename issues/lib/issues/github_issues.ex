@@ -7,15 +7,15 @@ defmodule Issues.GithubIssues do
     |> handle_response
   end
 
-  def issues_url(user,project) do
+  def issues_url(user, project) do
     "https://api.github.com/repos/#{user}/#{project}/issues"
   end
 
-  def handle_response({:ok,%{status_code: 200, body: body}}) do
+  def handle_response({:ok, %{status_code: 200, body: body}}) do
     {:ok, body}
   end
 
-  def handle_response({___,%{status_code: ___, body: body}}) do
+  def handle_response({_, %{status_code: ___, body: body}}) do
     {:error, body}
   end
 end
