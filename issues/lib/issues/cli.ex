@@ -8,7 +8,9 @@ defmodule Issues.CLI do
   """
 
   def run(argv) do
-    parse_args(argv)
+    argv
+    |> parse_args
+    |> process
   end
 
   @doc """
@@ -29,4 +31,16 @@ defmodule Issues.CLI do
   defp _parse_args({_, [user, project, count], _}), do: {user, project, String.to_integer(count)}
   defp _parse_args({_, [user, project], _}), do: {user, project, @default_count}
   defp _parse_args(_), do: :help
+
+
+  def process(:help) do
+    IO.puts """
+    usage: issues <user> <project> [ count | #{@default_count}]
+    """
+    System.halt 0
+  end
+
+  def process({user,project,_count}) do
+    Issues.GithubIssues.fetch(user,project)
+  end
 end
